@@ -12,6 +12,24 @@ let routes = [
   {
     path: '/login',
     component: modules['../views/Login/LoginView.vue']
+  },
+  {
+    path: '/dashboard',
+    component: modules['../views/DashBoard/DashBoard.vue'],
+    children: [
+      {
+        path: 'category',
+        component: modules['../views/Category/CategoryView.vue']
+      },
+      {
+        path: 'article',
+        component: modules['../views/Article/ArticleView.vue']
+      },
+      {
+        path: 'logout',
+        redirect: '/login'
+      }
+    ]
   }
 ]
 

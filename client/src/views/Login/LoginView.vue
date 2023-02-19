@@ -29,12 +29,15 @@ import { ref, reactive } from 'vue'
 import { login } from '@/apis/login'
 import { setToken, getToken } from '@/utils/token'
 import { AdminStore } from '@/stores/AdminStore'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
 const message = inject('message')
 const adminStore = AdminStore()
 let formData = reactive({
-  account: 'admin',
-  password: '123456',
-  rember: false
+  account: localStorage.getItem('account'),
+  password: localStorage.getItem('password'),
+  rember: localStorage.getItem('rember') === '1'
 })
 
 const rules = {
@@ -65,10 +68,21 @@ const handleLogin = async () => {
     adminStore.account = res.data.account
     adminStore.id = res.data.id
     setToken(res.data.token)
+    if (formData.rember) {
+      localStorage.setItem('account', formData.account)
+      localStorage.setItem('password', formData.password)
+      // 不能直接存入 true / false 因为会变成 string 类型
+      localStorage.setItem('rember', formData.rember ? 1 : 0)
+    } else {
+      localStorage.setItem('account', '')
+      localStorage.setItem('password', '')
+      // 不能直接存入 true / false 因为会变成 string 类型
+      localStorage.setItem('rember', 0)
+    }
 
     message.success('登录成功')
+    router.push('/dashboard')
   } catch (err) {
-    console.log(111)
     message.error('登录失败')
   }
 }

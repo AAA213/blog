@@ -68,7 +68,6 @@ const handleLogin = async () => {
 
     message.success('登录成功')
   } catch (err) {
-    console.log(111)
     message.error('登录失败')
   }
 }

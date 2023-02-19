@@ -8,7 +8,6 @@ router.post('/_token/add', async (req, res) => {
   // 接收前端传来的name
   const { name } = req.body
   const insert_sql = 'INSERT INTO `category` (`id`,`name`) VALUES (?,?)'
-  console.log(genid.NextId(), name)
   const { err, rows } = await db.async.run(insert_sql, [genid.NextId(), name])
 
   if (err == null) {
