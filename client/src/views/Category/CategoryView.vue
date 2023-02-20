@@ -1,5 +1,5 @@
 <template>
-  <div class="table">
+  <div >
     <div class="header">
       <n-button type="primary" @click="handleAdd"> 新增 </n-button>
     </div>

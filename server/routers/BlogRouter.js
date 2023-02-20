@@ -10,13 +10,13 @@ const router = express.Router()
 
 // 新增
 router.post('/_token/add', async (req, res) => {
-  const { category_id, title, content } = req.body
+  const { categoryId, title, content } = req.body
 
   const id = genid.NextId()
   const create_time = new Date().getTime()
   const insert_sql =
     'INSERT INTO `blog` (`id`,`title`,`category_id`,`content`,`create_time`) VALUES (?,?,?,?,?)'
-  const params = [id, title, category_id, content, create_time]
+  const params = [id, title, categoryId, content, create_time]
   const { err, rows } = await db.async.run(insert_sql, params)
   if (err == null) {
     res.send({

@@ -5,7 +5,7 @@
         {{ menu.name }}
       </div>
     </div>
-    <div style="padding: 20px; width: 100%">
+    <div class="container">
       <router-view></router-view>
     </div>
   </div>
@@ -53,7 +53,10 @@ const toPage = menu => {
     }
   }
 }
-
+.container {
+  padding: 20px 40px;
+  width: 100%;
+}
 .title {
   font-size: 65px;
   font-weight: bold;
