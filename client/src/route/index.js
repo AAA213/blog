@@ -6,6 +6,10 @@ const modules = import.meta.glob([
 
 let routes = [
   {
+    path: '/',
+    component: modules['../views/Home/HomeView.vue']
+  },
+  {
     path: '/test',
     component: modules['../views/TestView.vue']
   },

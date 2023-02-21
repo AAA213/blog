@@ -33,11 +33,11 @@ router.post('/_token/add', async (req, res) => {
 
 // 修改
 router.put('/_token/update', async (req, res) => {
-  const { id, category_id, title, content } = req.body
+  const { id, categoryId, title, content } = req.body
 
   const update_sql =
     'UPDATE `blog` SET `title` = ?,`content` = ?, category_id = ? WHERE `id` = ? '
-  const params = [title, content, category_id, id]
+  const params = [title, content, categoryId, id]
   const { err, rows } = await db.async.run(update_sql, params)
   if (err == null) {
     res.send({
@@ -107,7 +107,7 @@ router.get('/search', async (req, res) => {
   }
   // 查分页数据
   const searchSql =
-    'SELECT * FROM `blog` ' +
+    'SELECT `id`,`category_id`,`title`,`create_time`,substr(`content`,0,50) AS `content` FROM `blog` ' +
     whereSqlStr +
     "ORDER BY 'create_time' DESC LIMIT ?,?"
 

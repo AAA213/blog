@@ -7,7 +7,7 @@
       mode="default"
     />
     <Editor
-      style="height: 500px; overflow-y: hidden"
+      style="height: 250px; overflow-y: hidden"
       v-model="valueHtml"
       :defaultConfig="editorConfig"
       mode="default"
@@ -80,4 +80,4 @@ const handleChange = editor => {
 }
 </script>
 
-<style less></style>
+<style scoped></style>
